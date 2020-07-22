@@ -1,9 +1,11 @@
+<!-- This is the Opening Page when we display the page in any browser -->
 {%extends 'base.html' %}
 
 {% block head %}
-<title>Food Log</title>
+<title>kCal App</title>
 {%endblock%}
-
+<!-- This div creates all the content on the website, the table, text
+It also calls the data which is saved in the database for the specific element,like amount of carbs -->
 {% block body %}
 <div class = "content">
     <h1>Calorie Tracking App</h1>
@@ -15,37 +17,37 @@
             <th> Proteins</th>
             <th> Fat</th>
             <th> Total Calories</th>
-            <!-- <th> Water Consumption for the day</th> -->
             <th> Features </th>
         </tr>
-        {% for task in check %}
+        {% for data in check %}
         <tr>
-        <td>{{ task.content }}</td>
-        <td>{{ task.date_created.date() }}</td>  
-        <td>{{task.carbs}}</td>
-        <td>{{task.proteins}}</td>
-        <td>{{task.fats}}</td>
-        <td>{{task.total}}</td>
+        <td>{{ data.content }}</td>
+        <td>{{ data.date_created.date() }}</td>  
+        <td>{{data.carbs}}</td>
+        <td>{{data.proteins}}</td>
+        <td>{{data.fats}}</td>
+        <td>{{data.total}}</td>
         <td>    
-            <a href ="/delete/{{task.id}}">Delete</a>
+            <a href ="/delete/{{data.id}}">Delete</a>
             <br>
-            <a href="/update/{{task.id}}">Update</a>
+            <a href="/update/{{data.id}}">Update</a>
         </td>
         
         </tr>
         {% endfor %}
     </table>
+    <!-- This creates a input for the data that needs to be recieved -->
     <form action ="/" method="POST">
         <label>Food
-            <input type ="text"  name= 'add_food' id ="content"><br>
+            <input type ="text"  name= 'add_food' id ="content"><br><br>
         </label> 
         <label>Carbohydrates
-            <input type ="number" name= 'add_carbs' id ="quantity"><br>
+            <input type ="number" name= 'add_carbs' id ="quantity"><br><br>
         </label>
         <label>Proteins
-            <input type ="number" name= 'add_pro' id ="quantity1"><br></label>
+            <input type ="number" name= 'add_pro' id ="quantity1"><br><br></label>
         <label>Fats
-            <input type ="number" name= 'add_fats' id ="quantity2"><br></label>
+            <input type ="number" name= 'add_fats' id ="quantity2"><br><br></label>
         <input type="submit" value="Add Items">
     </form1>
     </form>

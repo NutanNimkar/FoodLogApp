@@ -1,27 +1,46 @@
+/* This is css file which help make in the ui of the html page */
+/* Changes in the background */
 body{
     background-image: url('../images/fru2.jpg') ;
     background-color: rgba(255, 255, 255, 0.767);
     text-align:  center;
-    color: #c02727;
-    font-size: 24px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position:center top;
+    background-attachment: fixed;
+    background-size: cover; 
+
 }
+/* Changes in the header */
+h1{
+    text-align:  center;
+    color: #c02727;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Changes for the tables */
 table, th, td {
     background-color: #ffffff31;
     margin-left: auto;
     margin-right: auto;
     color: black;
     font-size: 20px;
-    border: 0.7px solid rgba(0, 0, 0, 0);
+    border: 0.7px solid rgba(0, 0, 0, 0.24);
 }
+/* Changes for the text */
 p{
+    position: relative;
     text-align: left;
     color:rgb(0, 0, 0);
     font-size: 20px;
+
 }
+/* Changes for the label */
 label{
     color: #000;
-    display: flex
-    width: 140px;
+    width:140px;
     text-align: right;
+    vertical-align:middle; 
+    position: relative;
 }
