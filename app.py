@@ -14,18 +14,14 @@ manager = Manager(app)
 
 manager.add_command('db',MigrateCommand)
 class Data(db.Model):
-    # for i in range(0,3):
-    rand = random.randint(20,400)
-    rand1 = random.randint(20,200)
-    rand2 = random.randint(15,100) 
-    tot = rand+rand1+rand2
+    # for i in range(0,3): 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(100), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
-    proteins = db.Column(db.Integer,default = rand1)
-    carbs = db.Column(db.Integer,default = rand)
-    fats = db.Column(db.Integer,default = rand2)
-    total=db.Column(db.Integer,default = tot)
+    proteins = db.Column(db.Integer,default = 0)
+    carbs = db.Column(db.Integer,default = 0)
+    fats = db.Column(db.Integer,default = 0)
+    total=db.Column(db.Integer,default = 0)
 
     def __repr__(self):
         return '<Task %r>' % self.id
@@ -35,61 +31,18 @@ def totalcal():
 @app.route("/", methods = ['POST','GET'])
 def add():
     if request.method =='POST':
-        add_content = request.form['add_notes']
-        #add_carbs = int(request.form['add_carbs'])
-        # add_pro = int(request.form['add_pro'])
-        # add_fat = int(request.form['add_fats'])
-        new_content = Data(content = add_content)
-        #new_carbs = Data(carbs = add_carbs)
-        # new_pro = Data(proteins = add_pro)
-        # new_fat = Data(fats = add_fat)
+        add_content = request.form.get('add_food')
+        add_carbs = int(request.form.get('add_carbs'))
+        add_pro = int(request.form['add_pro'])
+        add_fat = int(request.form['add_fats'])
+        tot = add_carbs+add_pro+add_fat
+        new_content = Data(content = add_content,carbs = add_carbs,proteins = add_pro,fats = add_fat,total = tot)
         try:
             db.session.add(new_content)
-            #db.session.commit()
-            # db.session.add(new_carbs)
-            # db.session.add(new_pro)
-            # db.session.add(new_fat)
             db.session.commit()
             return redirect('/')
         except:
-            return " Issue with the text"
-        try:
-            db.session.add(new_carbs)
-            db.session.commit()
-        except:
-            return "Issue with the text2"    
-    else:
-        check = Data.query.order_by(Data.date_created).all()
-        return render_template('home.html',check = check)
-
-@app.route("/", methods = ['GET','POST'])
-def carbs():
-    rand = random.randint(0,100)
-    if request.method =='POST':
-        carb_add = request.form1['add_carbs']
-        carb_data = Data(carbs = carb_add)
-        
-        try:
-            db.session.add(carb_data)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return "Issue with the entry"    
-    else:
-        check = Data.query.order_by(Data.date_created).all()
-        return render_template('home.html',check = check)
-        
-@app.route("/", methods = ['GET','POST'])
-def proteins():
-    if request.method =='POST':
-        proadd = int(request.form2['quantity'])
-        prodata = Data(proteins = proadd)
-        try:
-            db.session.add(carb_data)
-            db.session.commit()
-            return carb_data
-        except:
-            return "Issue with the entry"    
+            return " Issue with the text"   
     else:
         check = Data.query.order_by(Data.date_created).all()
         return render_template('home.html',check = check)
@@ -109,7 +62,10 @@ def delete(id):
 def update(id):
     update_content =  Data.query.get_or_404(id)
     if request.method == 'POST':
-        update_content.content = request.form['content']
+        update_content.content = request.form['add_food']
+        update_content.carbs = request.form['quantity1']
+        update_content.fats = request.form['quantity2']
+        update_content.proteins = request.form['quantity']
         try:
             db.session.commit()
             return redirect('/')
