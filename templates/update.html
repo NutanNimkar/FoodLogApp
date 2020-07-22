@@ -5,10 +5,24 @@
 {%endblock%}
 {% block body %}
 <div class = "content">
-    <h1> Food Update</h1>
+    <h1> Update Info </h1>
     <form action ="/update/{{update_content.id}}" method="POST">
-    <input type ="text" name= 'content' id ="content"value="{{update_content.content}}">
+    <label>Food
+        <input type ="text" name= 'add_food' id ="content"value="{{update_content.content}}"><br>
+    </label> 
+    <label>Carbohydrates
+        <input type ="number" name= 'quantity2' id ="quantity"value="{{update_content.carbs}}"><br>
+    </label>
+    <label>Proteins
+        <input type ="number" name= 'quantity' id ="quantity"value="{{update_content.proteins}}"><br></label>
+    <label>Fats
+        <input type ="number" name= 'quantity1' id ="quantity"value="{{update_content.fats}}"><br></label>
+
     <input type="submit" value="Update">
     </form>
+    <!-- <form1 action ="/update/{{update_content.id}}" method="POST">
+    <input type ="number" name= 'quantity' id ="quantity" value="{{update_content.proteins}}">
+    <input type="submit" value="Update">
+    </form1> -->
 </div>
 {%endblock%}
