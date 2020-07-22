@@ -1,0 +1,69 @@
+{%extends 'base.html' %}
+
+{% block head %}
+<title>Food Log</title>
+{%endblock%}
+
+{% block body %}
+<div class = "content">
+    <h1> Food Tracking/ Calorie Consumption App</h1>
+    <table>
+        <tr>
+            <th> Add Food </th>
+            <th> Date Added </th>
+            <th> Carbohydrates</th>
+            <th> Proteins</th>
+            <th> Fat</th>
+            <th> Total Calories</th>
+            <!-- <th> Water Consumption for the day</th> -->
+            <th> Features </th>
+        </tr>
+        {% for task in check %}
+        <tr>
+        <td>{{ task.content }}</td>
+        <td>{{ task.date_created.date() }}</td>  
+        <td>{{task.carbs}}</td>
+        <td>{{task.proteins}}</td>
+        <td>{{task.fats}}</td>
+        <td>{{task.total}}</td>
+        <td>    
+            <a href ="/delete/{{task.id}}">Delete</a>
+            <br>
+            <a href="/update/{{task.id}}">Update</a>
+        </td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+    <form action ="/" method="POST">
+        <input type ="text" name= 'add_notes' id ="content">
+        <input type="submit" value="Add Food">
+    </form>
+    <p> An ideal daily intake of calories varies depending on age,<br> 
+        metabolism and levels of physical activity, among other things.<br>
+        The recommended daily calorie intake is 2,000 calories<br> 
+        a day for women and 2,500 for men.</p>
+
+        <!-- input type ="number" name= 'add_carbs' id ="content">
+        <input type ="number" name= 'add_pro' id ="content">
+        <input type ="number" name= 'add_fats' id ="content">
+     -->
+    <!-- <form1 action="/" method = "POST">
+        <input type="text" id="content" name="add_carbs">
+        <input type="submit" value="Add Carbs">
+    </form1>
+
+    <form2 action="/" method = "POST">
+        <input type="number" id="quantity" name="quantity">
+        <input type="submit" value="Add Pro">
+    </form2> -->
+    <!-- <form2 action="/" method = "POST">
+        <input type="number" id="quantity" name="quantity">
+        <input type="submit" value="Add Fats">
+    </form2> -->
+    <!-- <form1 action ="/" method="POST">
+    <input type ="number" name= 'quantity' id ="quantity">
+    <input type="submit" value="Add Range">
+    </form1> -->
+</div>
+{%endblock%}
