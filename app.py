@@ -70,9 +70,10 @@ def update(id):
     update_content =  Data.query.get_or_404(id)
     if request.method == 'POST':
         update_content.content = request.form['add_food']
-        update_content.carbs = request.form['quantity2']
-        update_content.fats = request.form['quantity1']
-        update_content.proteins = request.form['quantity']
+        update_content.carbs = int(request.form.get('quantity2'))
+        update_content.fats = int(request.form.get('quantity1'))
+        update_content.proteins = int(request.form.get('quantity'))
+        update_content.total = update_content.carbs + update_content.fats+update_content.proteins
         try:
             db.session.commit()
             return redirect('/')
