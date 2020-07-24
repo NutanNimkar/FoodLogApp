@@ -28,6 +28,10 @@ table, th, td {
     font-size: 20px;
     border: 0.7px solid rgba(0, 0, 0, 0.24);
 }
+a:hover {
+    background-color: rgba(94, 230, 184, 0.521);
+  }    
+
 /* Changes for the text */
 p{
     position: relative;
@@ -43,4 +47,30 @@ label{
     text-align: right;
     vertical-align:middle; 
     position: relative;
+    
+}
+input{
+    vertical-align:middle; 
+    position: relative;
+    
+}
+#button
+{
+  width: 140px;
+  background-color:rgba(255, 255, 255, 0);
+  border:none
+}
+#button:hover
+{
+  background-color: rgba(71, 245, 138, 0.507);
+}
+#buttonup
+{
+  width: 140px;
+  background-color:rgba(255, 255, 255, 0);
+  border:none
+}
+#buttonup:hover
+{
+  background-color: rgba(71, 245, 138, 0.507);
 }
