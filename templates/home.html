@@ -1,4 +1,5 @@
 <!-- This is the Opening Page when we display the page in any browser -->
+
 {%extends 'base.html' %}
 
 {% block head %}
@@ -6,17 +7,21 @@
 {%endblock%}
 <!-- This div creates all the content on the website, the table, text
 It also calls the data which is saved in the database for the specific element,like amount of carbs -->
+
 {% block body %}
 <div class = "content">
     <h1>Calorie Tracking App</h1>
+
     <table>
         <tr>
-            <th> Add Food </th>
+            <th> Food Item </th>
             <th> Date Added </th>
             <th> Carbohydrates</th>
             <th> Proteins</th>
-            <th> Fat</th>
-            <th> Total Calories</th>
+            <th> Fats</th>
+            <th> Calories Consumed</th>
+            <th> Calorie Limit</th>
+            <th> Calorie Limit Status</th>
             <th> Features </th>
         </tr>
         {% for data in check %}
@@ -27,6 +32,8 @@ It also calls the data which is saved in the database for the specific element,l
         <td>{{data.proteins}}</td>
         <td>{{data.fats}}</td>
         <td>{{data.total}}</td>
+        <td>{{data.totalexceed}}</td>
+        <td>{{data.displaylimit}}</td>
         <td>    
             <a href ="/delete/{{data.id}}">Delete</a>
             <br>
@@ -37,20 +44,30 @@ It also calls the data which is saved in the database for the specific element,l
         {% endfor %}
     </table>
     <!-- This creates a input for the data that needs to be recieved -->
-    <form action ="/" method="POST">
+
+    <form class = "form" action ="/" method="POST">
         <label>Food
             <input type ="text"  name= 'add_food' id ="content"><br><br>
         </label> 
+
         <label>Carbohydrates
-            <input type ="number" name= 'add_carbs' id ="quantity"><br><br>
+            <input type ="number" name= 'add_carbs' min="1" id ="quantity"><br><br>
         </label>
+
         <label>Proteins
-            <input type ="number" name= 'add_pro' id ="quantity1"><br><br></label>
+            <input type ="number" name= 'add_pro' min="1" id ="quantity1"><br><br>
+        </label>
+
         <label>Fats
-            <input type ="number" name= 'add_fats' id ="quantity2"><br><br></label>
-        <input type="submit" value="Add Items">
-    </form1>
+            <input type ="number" name= 'add_fats' min="1" id ="quantity2"><br><br>
+        </label>
+
+        <label>Limit
+        <input type ="number" name= 'add_limit' min="1000" id ="quantity3"><br><br>
+        </label>    
+        <input type="submit" value="Add Items" id ="button">
     </form>
+
     <p> An ideal daily intake of calories varies depending on age,<br> 
         metabolism and levels of physical activity, among other things.<br>
         The recommended daily calorie intake is 2,000 calories<br> 
